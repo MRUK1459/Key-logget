@@ -4,22 +4,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # අලුත් සංස්කරණය v4
+      - uses: actions/checkout@v4
 
-      - name: set up JDK 11
-        uses: actions/setup-java@v4 # අලුත් සංස්කරණය v4
+      - name: set up JDK 17 # මෙතැන 11 තිබුණු එක 17 කළා
+        uses: actions/setup-java@v4
         with:
-          java-version: '11'
+          java-version: '17' # මෙතැනත් 17 කළා
           distribution: 'temurin'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3 # අලුත්ම Gradle action එක
+        uses: gradle/actions/setup-gradle@v3
       
       - name: Build with Gradle
         run: gradle assembleDebug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4 # මෙන්න මෙතැන v4 ලෙස මාරු කළා
+        uses: actions/upload-artifact@v4
         with:
           name: key-logger-apk
           path: app/build/outputs/apk/debug/*.apk
